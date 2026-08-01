@@ -1,0 +1,22 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8mb4
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: rewards
+  password: rewards
+  host: localhost
+  socket: /var/run/mysqld/mysqld.sock
+
+development:
+  <<: *default
+  database: rewards_api_development
+
+test:
+  <<: *default
+  database: rewards_api_test
+
+production:
+  <<: *default
+  database: rewards_api_production
+  username: rewards_api
+  password: <%= ENV["REWARDS_API_DATABASE_PASSWORD"] %>
